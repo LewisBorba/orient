@@ -3,11 +3,10 @@
   "version": "0.0.1",
   "description": "Orient, A Health Tech App",
   "productName": "Orient",
-  
   "author": "pauloconsoni92@gmail.com",
   "private": true,
   "scripts": {
-
+    "start": "quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
