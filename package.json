@@ -6,9 +6,9 @@
   "author": "pauloconsoni92@gmail.com",
   "private": true,
   "scripts": {
-    "build": "npx quasar build",
+    "build": "quasar build",
     "start": "node server.js",
-    "heroku-postbuild": "yarn  && yarn build",
+    "heroku-postbuild": "yarn install && yarn build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
