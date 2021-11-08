@@ -100,10 +100,10 @@ export default {
       loadingConsultasConfirmadas: false,
       columns: [
         {
-          name: "horario",
+          name: "acceptedHour",
           label: "Horário confirmado",
           align: "left",
-          field: "horario",
+          field: "acceptedHour",
         },
         {
           name: "link",
@@ -112,10 +112,10 @@ export default {
           field: "link",
         },
         {
-          name: "tipo",
+          name: "appointmentType",
           align: "left",
           label: "Tipo de atendimento",
-          field: "tipo",
+          field: "appointmentType",
         },
       ],
     };
@@ -143,7 +143,6 @@ export default {
       } else {
         this.form.appointmentType = "ORIENTACAO_PROFISSIONAL";
       }
-      console.log(this.form.appointmentType);
       const success = await new Consulta().criar(this.form);
       if (success) await this.getUsersConsultas();
       this.tab = "minhas_consultas";
@@ -153,7 +152,6 @@ export default {
       const success = await new Consulta().getUsersConsultas(
         this.form.idPatient
       );
-      console.log(success);
       this.dataConsultasEmEspera = success.map((v) => ({
         ...v,
         appointmentType:
@@ -161,17 +159,13 @@ export default {
             ? "Psicoterapia"
             : "Orientação Profissional",
       }));
-      console.log("***");
-      console.log(this.dataConsultasEmEspera);
-      console.log("***");
       this.loadingConsultasEmEspera = false;
     },
     async getUsersAcceptedConsultas() {
       this.loadingConsultasConfirmadas = true;
-      const success = await new Consulta().getUsersAcceptedConsultas(
+      this.dataConsultasConfirmadas = await new Consulta().getUsersAcceptedConsultas(
         this.form.idPatient
       );
-      console.log(success);
       this.loadingConsultasConfirmadas = false;
     },
   },

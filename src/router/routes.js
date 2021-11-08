@@ -8,6 +8,12 @@ const routes = [
       { name: "CadastroUser", path: 'Cadastro/User', component: () => import('pages/User/CadastroUser.vue') },
       { name: "CadastroUniversidade", path: 'Cadastro/Universidade', component: () => import('pages/Universidade/CadastroUniversidade.vue') },
       { name: "CadastroPsicologo", path: 'Cadastro/Psicologo', component: () => import('pages/Psicologo/CadastroPsicologo.vue') },
+    ]
+  },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
       { name: "LobbyUser", path: 'User/LobbyUser/:id?', component: () => import('pages/User/LobbyUser.vue') },
       { name: "LobbyPsicologo", path: 'Psicologo/LobbyPsicologo/:id?', component: () => import('pages/Psicologo/LobbyPsicologo.vue') },
     ]

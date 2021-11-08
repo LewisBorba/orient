@@ -4,4 +4,3 @@ module.exports = {
     '@quasar/babel-preset-app'
   ]
 }
-

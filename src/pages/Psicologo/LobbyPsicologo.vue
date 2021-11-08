@@ -1,10 +1,6 @@
 <template>
   <q-page padding>
-    <q-header>
-      <q-toolbar>
-        <q-toolbar-title class="text-center">Consultas</q-toolbar-title>
-      </q-toolbar>
-    </q-header>
+    <p class="text-h6 text-grey-8 q-mt-md text-center">Gestão de Consultas</p>
     <TablePacientes
       :loading="loadingPacientes"
       :data="dataPacientesPsico"
@@ -15,6 +11,7 @@
       :loading="loadingPacientes"
       :data="dataPacientesOrient"
       title="Pacientes Orientação Psicológica"
+      @aceitarConsulta="(id, data) => aceitarConsulta(id, data)"
     />
     <TableConsultasConfirmadas
       :loading="loadingConsultasConfirmadas"
@@ -74,7 +71,6 @@ export default {
       success
         ? (this.dataPacientesPsico = success)
         : (this.dataPacientesPsico = []);
-      console.log(success);
       this.loadingPacientes = false;
     },
     async getPacientesOrient() {
@@ -85,16 +81,14 @@ export default {
       success
         ? (this.dataPacientesOrient = success)
         : (this.dataPacientesOrient = []);
-      console.log(success);
       this.loadingPacientes = false;
     },
     async getConsultas() {
       this.loadingConsultasConfirmadas = true;
       const success = await new Consulta().getConsultasMarcadas(this.id);
-      console.log('*****')
-      console.log(success);
-      console.log('*****')
-      this.dataConsultasConfirmadas = success;
+      success
+        ? (this.dataConsultasConfirmadas = success)
+        : (this.dataConsultasConfirmadas = []);
       this.loadingConsultasConfirmadas = false;
     },
     async aceitarConsulta(id, data) {
